@@ -2,16 +2,16 @@
 
 class Welcome extends CI_Controller {
 
-	public function index()
-	{
+	public function index($section='landing'){
 		
-		//Could be: landing, state_assistance, reviews, companies, blogs
-		//For the moment just working 'landing'
-		$section = 'landing';
+		//This has to be detected by a script
+		$options = array();
+		$options['state'] = 'florida';
+		$options['city'] = 'Jacksonville';
 
-		$data = get_section_vars($section);
+		$data = get_section_vars($section,$options);
 		if ($data['error']){
-			show_404();
+			var_dump($data);
 		}else{
 			$this->load->view('_template',$data);			
 		}

@@ -2,11 +2,35 @@
 		<div class="col-md-6 column">
 			<blockquote>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-				</p> <small>Someone famous <cite>Source Title</cite></small>
+					<?php
+					if (isset($testimonial_text)){
+						echo $testimonial_text;
+					}
+					?>
+				</p> 
+				<small>
+				<?php
+				if (isset($testimonial_name)){
+					echo $testimonial_name;
+				}
+				?>
+				</small>
 			</blockquote>
 		</div>
 		<div class="col-md-6 column">
-			 <address> <strong>Twitter, Inc.</strong><br> 795 Folsom Ave, Suite 600<br> San Francisco, CA 94107<br> <abbr title="Phone">P:</abbr> (123) 456-7890</address>
+			 <address> <strong>LTC</strong><br>
+			 	<?php
+				if (isset($address)){
+					echo $address;
+				}
+				?>
+				<br>
+				<abbr title="Phone">P:</abbr>
+				<?php
+				if (isset($phone)){
+					echo $phone;
+				}
+				?>
+			</address>
 		</div>
 	</div>

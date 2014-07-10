@@ -10,7 +10,11 @@
 
 				
 				<p>
-					Save Money. Compare Side-by-Side Quotes from Florida's Top 10 Long Term Care Insurance Companies.
+					<?php
+					if (isset($headline)){
+						echo $headline;
+					}
+					?>
 				</p>
 				<p>
 					<a class="btn btn-primary btn-large" id="modal-793572" href="#modal-container-793572" data-toggle="modal" data-backdrop="static" data-keyboard="false">Start Free Quote Now »</a>
@@ -18,7 +22,7 @@
 				</p>
 				
 				<p>
-					Quote by phone. Florida: (850) 222-2221
+					Quote by phone. <?php echo ucfirst($state); ?> : <?php echo $phone;?>
 				</p>
 
 			</div>
