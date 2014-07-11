@@ -27,3 +27,8 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/scripts.js"></script>
+
+  <?php
+  if (isset($section) AND $section=='landing'){?>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/landing_manager.js"></script>
+  <?}?>

@@ -8,11 +8,12 @@ if (!function_exists('getMetaContent')){
 		$data = array();
 		$data['header_vars'] = array();
 		$data['content_vars'] = array();
-		$data['content_vars']['section'] = $section;
 
 
 		//Default Values
-		$data['header_vars']['title'] = '';		
+		$data['header_vars']['title'] = '';	
+		$data['header_vars']['section'] = $section;	
+		$data['content_vars']['section'] = $section;
 		$data['content_vars']['content_body'] = '';
 		$data['content_vars']['state'] = $options['state'];
 		$data['content_vars']['content_load_from_db'] = false;
