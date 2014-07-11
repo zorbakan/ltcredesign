@@ -141,13 +141,13 @@
 						  <div class="form-group form-step2">
 						  	<div class="col-sm-offset-2 col-sm-10">
 								  <div class="checkbox">
-										<label><input type="checkbox" /> I take Medications</label>
+										<label><input type="checkbox" id="prescripted_med_checkbox"/> I take Medications</label>
 									</div>
 									<div class="checkbox">
-										<label><input type="checkbox" /> Yes, I’m a non-smoker</label>
+										<label><input type="checkbox" id="non_smoker_checkbox"/> Yes, I’m a non-smoker</label>
 									</div>
 									<div class="checkbox">
-										<label><input type="checkbox" /> I’ve been hospitalized in past 5 years</label>
+										<label><input type="checkbox" id="hosp_last_5_years_checkbox"/> I’ve been hospitalized in past 5 years</label>
 									</div>
 								</div>
 							</div>
@@ -219,7 +219,7 @@
 									<div class="radio">
 									  <label>
 									    <input type="radio" name="marital_status" value="other" >
-									    Other
+									    Other 
 									  </label>
 									  <input type="text" id="marital_other_text" placeholder="Not Married Nor Single" value="">
 									</div>
