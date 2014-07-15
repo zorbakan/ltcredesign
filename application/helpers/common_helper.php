@@ -45,9 +45,9 @@ if (!function_exists('getMetaContent')){
 		$query = $CI->db->get_where('phones', $where_clauses);
 		$results = $query->result_array();
 		if (count($results)==0){
-			$data['content_vars']['phone'] = '';
+			$data['content_vars']['phones'] = array();
 		}else{
-			$data['content_vars']['phone'] = $results[0]['phone'];
+			$data['content_vars']['phones'] = $results;
 		}
 
 		$where_clauses = array();
@@ -63,6 +63,18 @@ if (!function_exists('getMetaContent')){
 		}else{
 			$data['content_vars']['testimonial_text'] = $results[0]['testimonial'];
 			$data['content_vars']['testimonial_name'] = $results[0]['name'];
+		}
+
+		$where_clauses = array();
+		$where_clauses['state'] = $options['state'];
+		$CI->db->where($where_clauses);
+		$CI->db->order_by("order", "desc");
+		$query = $CI->db->get('articles');
+		$results = $query->result_array();
+		if (count($results)==0){
+			$data['content_vars']['articles'] = array();
+		}else{
+			$data['content_vars']['articles'] = $results;
 		}
 		
 		switch ($section) {

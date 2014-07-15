@@ -21,8 +21,14 @@
 					<div class="clearfix"></div>
 				</p>
 				
-				<p>
-					Quote by phone. <?php echo ucfirst($state); ?> : <?php echo $phone;?>
+				<h2>Quote by phone</h2> 
+				<p><?php // echo ucfirst($state); 
+					?>
+					<?php 
+					foreach ($phones as $a_phone_record) {
+						echo $a_phone_record['city'].': '.$a_phone_record['phone'].'<br>';
+					}
+					?>
 				</p>
 
 			</div>
