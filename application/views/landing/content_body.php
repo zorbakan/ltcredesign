@@ -273,6 +273,99 @@
 						      <input type="text" class="form-control" id="email-address" placeholder="Email Address">
 						    </div>
 						  </div>
+						  <div class="form-group form-step4">
+						  	<div class="col-sm-offset-2 col-sm-10">
+						  		<legend>Daily / Monthly Benefit</legend>
+									<div class="radio">
+									  <label>
+									    <input type="radio" name="benefit_amount" value="usd100day" checked>
+									    $100/day or $3,000/mo
+									  </label>
+									</div>
+									<div class="radio">
+									  <label>
+									    <input type="radio" name="benefit_amount" value="usd150day" checked>
+									    $150/day or $4,500/mo
+									  </label>
+									</div>
+									<div class="radio">
+									  <label>
+									    <input type="radio" name="benefit_amount" value="usd200day" checked>
+									    $200/day or $6,000/mo
+									  </label>
+									</div>
+									<div class="radio">
+									  <label>
+									    <input type="radio" name="benefit_amount" value="usd250day" checked>
+									    $250/day or $7,500/mo
+									  </label>
+									</div>
+									<div class="radio">
+									  <label>
+									    <input type="radio" name="benefit_amount" value="usd300day" checked>
+									    $300/day or $9,000/mo
+									  </label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group form-step4">
+						  	<div class="col-sm-offset-2 col-sm-10" id="benefit_periods">
+						  		<legend>Benefit Period</legend>
+									<div class="checkbox">
+									  <label>
+									    <input type="checkbox" name="2years" value="2years" checked>
+									    2 Years
+									  </label>
+									</div>
+									<div class="checkbox">
+									  <label>
+									    <input type="checkbox" name="3years" value="3years" checked>
+									    3 Years
+									  </label>
+									</div>
+									<div class="checkbox">
+									  <label>
+									    <input type="checkbox" name="5years" value="5years" checked>
+									    5 Years
+									  </label>
+									</div>
+									<div class="checkbox">
+									  <label>
+									    <input type="checkbox" name="10years" value="10years" checked>
+									    10 Years
+									  </label>
+									</div>
+									<div class="checkbox">
+									  <label>
+									    <input type="checkbox" name="unlimited" value="unlimited" checked>
+									    Unlimited Benefit
+									  </label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group form-step4">
+						  	<div class="col-sm-offset-2 col-sm-10">
+						  		<legend>Options &amp; Riders</legend>
+									<div class="checkbox">
+									  <label>
+									    <input type="checkbox" name="returnofpremium" value="returnofpremium" checked>
+									    Return of Premium
+									  </label>
+									</div>
+									<div class="checkbox">
+									  <label>
+									    <input type="checkbox" name="careday1" value="careday1" checked>
+									    Home Health Care on Day 1 
+									  </label>
+									</div>
+									<div class="checkbox">
+									  <label>
+									    <input type="checkbox" name="sharedcoverage" value="sharedcoverage" checked>
+									    Shared Coverage 
+									  </label>
+									</div>
+								</div>
+							</div>
 						  <div class="form-group" id="form-navigation-container">
 						  	 <div class="col-sm-offset-2 col-sm-10">
 						  	 	<a class="btn btn-success btn-large" id="multipage-form-next">Next »</a>
@@ -282,8 +375,8 @@
 						</div>
 						<div class="modal-footer">						
 							<div class="progress">
-							  <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-							    30% Complete
+							  <div id="form-quote-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+							    0% Complete
 							  </div>
 							</div>
 						</div>
@@ -292,6 +385,12 @@
 				
 			</div>
 			
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div id="map_container">
+			</div>
 		</div>
 	</div>
 	<div class="row clearfix">

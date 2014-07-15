@@ -1,13 +1,66 @@
 function LandingPageManager(){
 	var self = this;
 	self.current_form_step = 1;
-	self.last_from_step = 3;
+	self.last_from_step = 4;
 	self.quote_form = [];
 
 	this.init = function() {
 		self.bind_handlers();
 		self.initialize_quote_form_data();
 		self.reset_form_modal();
+		self.load_map();
+	};
+
+	this.load_map = function() {
+		$(window).on('load', function(){
+        $('#map_container').jHERE({
+            enable: ['behavior'],
+            center: [26.664167, -80.838611],
+            zoom: 5,
+            type: 'smart'
+        }).jHERE('marker', [26, -80], {
+		    	icon: 'http://jhere.net/images/pin-black.png',
+	        anchor: {x: 12, y: 32},
+	        click: function(event){
+	        	var city = 'Miami';
+	        	var text = 'home: $37,592 <br> assisted: $30,000 <br> nurse: $109,500';
+	        	self.add_bubble_to_map(event, city, text);
+	        }
+		    }).jHERE('marker', [28, -82], {
+		    	icon: 'http://jhere.net/images/pin-black.png',
+	        anchor: {x: 12, y: 32},
+	        click: function(event){
+	        	var city = 'Tampa';
+	        	var text = 'home: $42854 <br> assisted: $34200 <br> nurse: $100375';
+	        	self.add_bubble_to_map(event, city, text);
+	        }
+		    }).jHERE('marker', [28, -81], {
+		    	icon: 'http://jhere.net/images/pin-black.png',
+	        anchor: {x: 12, y: 32},
+	        click: function(event){
+	        	var city = 'Orlando';
+	        	var text = 'home: $43472 <br> assisted: $39900 <br> nurse: $89790';
+	        	self.add_bubble_to_map(event, city, text);
+	        }
+		    }).jHERE('marker', [30, -82], {
+		    	icon: 'http://jhere.net/images/pin-black.png',
+	        anchor: {x: 12, y: 32},
+	        click: function(event){
+	        	var city = 'Jacksonville';
+	        	var text = 'home: $45714 <br> assisted: $33540 <br> nurse: $85775';
+	        	self.add_bubble_to_map(event, city, text);
+	        }
+		    });
+        $('.nm_crimg').parent().remove();
+    });
+	};
+
+	this.add_bubble_to_map = function(event, city_name, text) {
+		$('#map_container').jHERE('bubble', [event.geo.latitude, event.geo.longitude], {
+			 content: city_name+'<br>'+text,
+			 closable: true,
+			 onclose: function(){}
+			});
 	};
 
 	this.initialize_quote_form_data = function() {
@@ -73,6 +126,8 @@ function LandingPageManager(){
 			self.current_form_step++;
 			self.update_quote_progress_bar();
 		}else{
+			self.current_form_step++;
+			self.update_quote_progress_bar();
 			self.submit_form_data_to_server();
 			self.hide_form_modal();
 			self.reset_form_modal();
@@ -239,7 +294,11 @@ function LandingPageManager(){
 
 
 	this.update_quote_progress_bar = function() {
-
+		var current_progress_percent = $('#form-quote-progress-bar').attr('aria-valuenow');
+		var updated_progress = Math.round(((self.current_form_step-1)/self.last_from_step)*100)
+		$('#form-quote-progress-bar').attr('aria-valuenow',updated_progress);
+		$('#form-quote-progress-bar').css('width',updated_progress+'%');
+		$('#form-quote-progress-bar').text(updated_progress+'% complete');
 	};
 
 
@@ -267,7 +326,6 @@ function LandingPageManager(){
 			  	}
 			  }
 			  break;
-
 			case 3:
 				self.quote_form[current_step-1]['first_name'] = $('#first-name').val();
 				self.quote_form[current_step-1]['last_name'] = $('#last-name').val();
@@ -277,14 +335,13 @@ function LandingPageManager(){
 				self.quote_form[current_step-1]['phone'] = $('#phone-number').val();
 				self.quote_form[current_step-1]['email'] = $('#email-address').val();
 				self.preliminary_submit_to_server();
+				break;
 			case 4:
-				var step_4 = {
-					benefit_amount : '', //i.e. 100/day
-					benefit_period : '', //in years
-					return_of_premium : '',
-					health_care_day1 : '',
-					shared_care : ''
-				}
+				self.quote_form[current_step-1]['benefit_amount'] = $("input[name='benefit_amount']:checked").val();
+				self.quote_form[current_step-1]['benefit_period'] = ($('#benefit_periods').find("input:checked" ).length>0) ? $('#benefit_periods').find("input:checked" ).serializeArray() : '';
+				self.quote_form[current_step-1]['return_of_premium'] = ($('input[name="returnofpremium"]').is(':checked')) ? '1' : '0';
+				self.quote_form[current_step-1]['health_care_day1'] = ($('input[name="careday1"]').is(':checked')) ? '1' : '0';
+				self.quote_form[current_step-1]['shared_care'] = ($('input[name="sharedcoverage"]').is(':checked')) ? '1' : '0';
 				break;
 			default:
 				break;		
@@ -332,7 +389,15 @@ function LandingPageManager(){
 	};
 
 	this.submit_form_data_to_server = function() {
-
+		var datasubmited = $.extend({}, self.quote_form[0], self.quote_form[1], self.quote_form[2], self.quote_form[3]);
+		var ws = {
+			type: 'POST',
+			dataType : "json",
+			data: datasubmited,
+			complete : self.submit_to_server_ok,
+			url : BASE_URL+"quote/post_final"
+		}
+		$.ajax(ws);
 	};
 }
 

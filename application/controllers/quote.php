@@ -21,6 +21,7 @@ class Quote extends CI_Controller {
 	public function post_final(){
 		$response = array();
 		$response['result'] = 'ok';
+		$this->quote_model->add_final_quote_request($this->input->post(NULL, TRUE));
 		echo json_encode($response);
 	}
 }

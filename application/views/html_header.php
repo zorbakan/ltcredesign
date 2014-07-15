@@ -33,5 +33,6 @@
 
   <?php
   if (isset($section) AND $section=='landing'){?>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/jhere.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>js/landing_manager.js"></script>
   <?}?>
