@@ -12,7 +12,7 @@ class Welcome extends CI_Controller {
 
 		$options = array();
 		$calculated_state = $this->get_current_state_from_url();
-		if ($calculated_state=='' || strpos($calculated_state, 'ltctree')!==false || strpos($calculated_state, 'localhost')!==false){
+		if ($calculated_state=='' || strpos($calculated_state, 'ltctree')!==false || strpos($calculated_state, 'localhost')!==false || strpos($calculated_state, 'wearesmartpick')!==false ){
 			$calculated_state = 'florida';
 		}
 		$options['state'] = $calculated_state;			
