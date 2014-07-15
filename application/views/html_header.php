@@ -28,7 +28,11 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/scripts.js"></script>
   <script>
-   var BASE_URL = '<?php echo base_url();?>';
+  var BASE_URL = '<?php echo base_url();?>';
+  <?
+  if (isset($state)){?>
+  var CURRENT_STATE = '<?php echo $state;?>';
+  <?}?>
   </script>
 
   <?php

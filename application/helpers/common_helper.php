@@ -13,6 +13,7 @@ if (!function_exists('getMetaContent')){
 		//Default Values
 		$data['header_vars']['title'] = '';	
 		$data['header_vars']['section'] = $section;	
+		$data['header_vars']['state'] = $options['state'];
 		$data['content_vars']['section'] = $section;
 		$data['content_vars']['content_body'] = '';
 		$data['content_vars']['state'] = $options['state'];
@@ -38,7 +39,9 @@ if (!function_exists('getMetaContent')){
 
 		$where_clauses = array();
 		$where_clauses['state'] = $options['state'];
-		$where_clauses['city'] = $options['city'];
+		if (isset($options['city'])){
+			$where_clauses['city'] = $options['city'];			
+		}
 		$query = $CI->db->get_where('phones', $where_clauses);
 		$results = $query->result_array();
 		if (count($results)==0){
@@ -49,11 +52,14 @@ if (!function_exists('getMetaContent')){
 
 		$where_clauses = array();
 		$where_clauses['state'] = $options['state'];
-		$where_clauses['city'] = $options['city'];
+		if (isset($options['city'])){
+			$where_clauses['city'] = $options['city'];			
+		}
 		$query = $CI->db->get_where('testimonials', $where_clauses);
 		$results = $query->result_array();
 		if (count($results)==0){
-			$data['content_vars']['phone'] = '';
+			$data['content_vars']['testimonial_text'] = '';
+			$data['content_vars']['testimonial_name'] = '';
 		}else{
 			$data['content_vars']['testimonial_text'] = $results[0]['testimonial'];
 			$data['content_vars']['testimonial_name'] = $results[0]['name'];

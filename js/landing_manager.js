@@ -3,64 +3,14 @@ function LandingPageManager(){
 	self.current_form_step = 1;
 	self.last_from_step = 4;
 	self.quote_form = [];
+	self._map_manager_ = {};
 
 	this.init = function() {
 		self.bind_handlers();
-		self.initialize_quote_form_data();
 		self.reset_form_modal();
-		self.load_map();
-	};
-
-	this.load_map = function() {
-		$(window).on('load', function(){
-        $('#map_container').jHERE({
-            enable: ['behavior'],
-            center: [26.664167, -80.838611],
-            zoom: 5,
-            type: 'smart'
-        }).jHERE('marker', [26, -80], {
-		    	icon: 'http://jhere.net/images/pin-black.png',
-	        anchor: {x: 12, y: 32},
-	        click: function(event){
-	        	var city = 'Miami';
-	        	var text = 'home: $37,592 <br> assisted: $30,000 <br> nurse: $109,500';
-	        	self.add_bubble_to_map(event, city, text);
-	        }
-		    }).jHERE('marker', [28, -82], {
-		    	icon: 'http://jhere.net/images/pin-black.png',
-	        anchor: {x: 12, y: 32},
-	        click: function(event){
-	        	var city = 'Tampa';
-	        	var text = 'home: $42854 <br> assisted: $34200 <br> nurse: $100375';
-	        	self.add_bubble_to_map(event, city, text);
-	        }
-		    }).jHERE('marker', [28, -81], {
-		    	icon: 'http://jhere.net/images/pin-black.png',
-	        anchor: {x: 12, y: 32},
-	        click: function(event){
-	        	var city = 'Orlando';
-	        	var text = 'home: $43472 <br> assisted: $39900 <br> nurse: $89790';
-	        	self.add_bubble_to_map(event, city, text);
-	        }
-		    }).jHERE('marker', [30, -82], {
-		    	icon: 'http://jhere.net/images/pin-black.png',
-	        anchor: {x: 12, y: 32},
-	        click: function(event){
-	        	var city = 'Jacksonville';
-	        	var text = 'home: $45714 <br> assisted: $33540 <br> nurse: $85775';
-	        	self.add_bubble_to_map(event, city, text);
-	        }
-		    });
-        $('.nm_crimg').parent().remove();
-    });
-	};
-
-	this.add_bubble_to_map = function(event, city_name, text) {
-		$('#map_container').jHERE('bubble', [event.geo.latitude, event.geo.longitude], {
-			 content: city_name+'<br>'+text,
-			 closable: true,
-			 onclose: function(){}
-			});
+		self.initialize_quote_form_data();
+		self._map_manager_ = new MapOfCostsManager();
+		self._map_manager_.init();
 	};
 
 	this.initialize_quote_form_data = function() {
@@ -100,6 +50,16 @@ function LandingPageManager(){
 		self.quote_form.push(step_2);
 		self.quote_form.push(step_3);
 		self.quote_form.push(step_4);
+
+		$('#form-quote-modal').find('option').each(function() {
+			if ($(this).text().toLowerCase() == CURRENT_STATE.toLowerCase()){
+				$(this).parent().val($(this).val());
+				console.log($(this).text());
+			}
+		});
+		$('#form-Age').val('55');
+		$('#spouse-Age').val('55');
+		
 
 	};
 
@@ -399,6 +359,105 @@ function LandingPageManager(){
 		}
 		$.ajax(ws);
 	};
+}
+
+function MapOfCostsManager(){
+	var self = this;
+	self.dom_map_container = '#map_container';
+
+	this.init = function(map_container) {
+		self.dom_map_container = map_container || self.dom_map_container;
+		self.load_map();
+		self.get_cost_of_care_points();
+	};
+
+	this.get_cost_of_care_points = function() {
+		var ws = {
+			type: 'GET',
+			dataType : "json",
+			complete : self.get_cost_of_care_points_ok,
+			url : BASE_URL+"cost_of_care/get_map_points"
+		}
+		$.ajax(ws);
+	};
+
+	this.get_cost_of_care_points_ok = function(data) {
+    var response = data['responseText'];
+    try{
+        response = $.parseJSON( response )
+    }catch(e){
+        response = {'result':'not_json'};
+    }
+    if (response['result'] == 'ok'){
+        self.load_cost_of_care_points(response['map_points']);
+    }else{
+        console.log(response);
+    }
+	};
+
+	this.load_cost_of_care_points = function(map_points) {
+		for (var i = 0; i < map_points.length; i++) {
+			var a_point = map_points[i];
+			$(self.dom_map_container).jHERE(
+					'marker', 
+					[parseFloat(a_point.lat), parseFloat('-'+a_point.long)], 
+					{
+			    	icon: BASE_URL+'img/money_pin_30.png',
+			    	text: a_point.city,
+		        anchor: {x: 15, y: 19},
+		        click: self.add_bubble_to_map,   	
+	        	point_info : a_point
+	        }
+		    );
+		};
+	};
+
+	this.load_map = function() {
+		$(window).on('load', function(){
+        $(self.dom_map_container).jHERE({
+            enable: ['behavior'],
+            center: [26.664167, -80.838611],
+            zoom: 5,
+            type: 'smart'
+        });
+    });
+	};
+
+	this.add_bubble_to_map = function(event) {
+		var point_info = event.target.point_info;
+		var content_to_show = '';
+		content_to_show += '<div style="text-align:center"><legend>'+point_info.city+'</legend></div>';
+		content_to_show += 'Home Care: $'+number_format(point_info.home)+'<br>';
+		content_to_show += 'Assisted Care: $'+number_format(point_info.assisted)+'<br>';
+		content_to_show += 'Nursing Care: $'+number_format(point_info.nursing)+'<br>';
+		$(self.dom_map_container).jHERE('bubble', [event.geo.latitude, event.geo.longitude], {
+			 content: content_to_show,
+			 closable: true,
+			 onclose: function(){}
+			});
+	};
+}
+
+function number_format(number, decimals, dec_point, thousands_sep) {
+    var n = !isFinite(+number) ? 0 : +number, 
+        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+        s = '',
+        toFixedFix = function (n, prec) {
+            var k = Math.pow(10, prec);
+            return '' + Math.round(n * k) / k;
+        };
+    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+    if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '').length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+    return s.join(dec);
 }
 
 var _LPM_ = new LandingPageManager();
