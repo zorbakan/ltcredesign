@@ -394,12 +394,6 @@
 		</div>
 	</div>
 	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<div id="map_container">
-			</div>
-		</div>
-	</div>
-	<div class="row clearfix">
 		<div class="col-md-4 column">
 			<h2>
 				Ratings

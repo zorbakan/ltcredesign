@@ -14,7 +14,13 @@ class Cost_of_care extends CI_Controller {
 	public function get_map_points(){
 		$response = array();
 		$response['result'] = 'ok';
-		$response['map_points'] = $this->cost_of_care_model->get_points_info();
+		$state = $this->input->post('state');
+		if ($state){
+			$map_points = $this->cost_of_care_model->get_points_info_by_state($state);
+		}else{
+			$map_points = $this->cost_of_care_model->get_points_info();
+		}
+		$response['map_points'] = $map_points;
 		echo json_encode($response);
 	}
 

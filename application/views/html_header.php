@@ -36,7 +36,15 @@
   </script>
 
   <?php
+  //Load Landing Page Scripts
   if (isset($section) AND $section=='landing'){?>
-    <script type="text/javascript" src="<?php echo base_url(); ?>js/jhere.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>js/landing_manager.js"></script>
+  <?}?>
+
+  <?php
+  //Load Cost of Care Scripts
+  if (isset($section) AND $section=='cost-of-long-term-care'){?>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/jhere.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/cost_of_care_manager.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/map_cost_of_care_manager.js"></script>
   <?}?>

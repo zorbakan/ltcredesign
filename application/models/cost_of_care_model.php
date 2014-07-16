@@ -12,4 +12,14 @@ class cost_of_care_model extends CI_Model{
 		return $results;
 	}
 
+	public function get_points_info_by_state($state){
+		$where = array('home >' => 0);
+		if ($state!=''){
+			$where['state'] = $state;
+		}
+		$query = $this->db->get_where('cost_of_care',$where);
+		$results = $query->result_array();
+		return $results;
+	}
+
 }

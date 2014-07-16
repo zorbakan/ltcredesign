@@ -1,3 +1,14 @@
+<?php
+//Load Cost of Care Dom Elements
+if (isset($section) AND $section=='cost-of-long-term-care'){?>
+  <div class="row clearfix">
+		<div class="col-md-12 column">
+			<div id="map_container">
+			</div>
+		</div>
+	</div>
+<?}?>
+
 	<div class="row clearfix">
 		<div class="col-md-6 column">
 			<blockquote>
@@ -17,22 +28,27 @@
 				</small>
 			</blockquote>
 		</div>
-		<div class="col-md-6 column bg-primary">
-			 <address> 
-			 	<br>
-			 	<strong>LTC</strong><br>
-			 	<?php
-				if (isset($address)){
-					echo $address;
-				}
-				?>
-				<br>				
-				<?php
-				if (isset($phones[0])){
-					echo '<abbr title="Phone">P:</abbr>'.$phones[0]['phone'];
-				}
-				?>
-			</address>
+		<div class="col-md-6 column">
+			<div class="clearfix bg-primary">
+				<div class="col-md-12 column">
+					<address> 
+					 	<br>
+					 	<strong>LTC</strong>
+					 	<br>
+					 	<?php
+						if (isset($address)){
+							echo $address;
+						}
+						?>
+						<br>				
+						<?php
+						if (isset($phones[0])){
+							echo '<abbr title="Phone">P:</abbr>'.$phones[0]['phone'];
+						}
+						?>
+					</address>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="row clearfix">
