@@ -14,7 +14,8 @@ class Quote extends CI_Controller {
 	public function post_preliminary(){
 		$response = array();
 		$response['result'] = 'ok';
-		$this->quote_model->add_quote_request($this->input->post(NULL, TRUE));
+		$quote_id = $this->quote_model->add_quote_request($this->input->post(NULL, TRUE));
+		$response['quote_id'] = $quote_id;
 		echo json_encode($response);
 	}
 

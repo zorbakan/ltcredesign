@@ -17,19 +17,21 @@
 					?>
 				</p>
 				<p>
-					<a class="btn btn-primary btn-large" id="modal-793572" href="#form-quote-modal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Start Free Quote Now »</a>
+					<a class="btn btn-info btn-large" id="modal-793572" href="#form-quote-modal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Start Free Quote Now »</a>
 					<div class="clearfix"></div>
 				</p>
 				
-				<h2>Quote by phone</h2> 
-				<p><?php // echo ucfirst($state); 
-					?>
+				<h3>Quote by Phone</h3> 
+				<?php  echo ucfirst($state); 
+					?> Regional Phone Numbers:
+					<h4>
 					<?php 
 					foreach ($phones as $a_phone_record) {
-						echo $a_phone_record['city'].': '.$a_phone_record['phone'].'<br>';
+						echo $a_phone_record['city'].': '.$a_phone_record['phone'].' <br> ';
 					}
 					?>
-				</p>
+					</h4>
+				
 
 			</div>
 			<div class="modal fade" id="form-quote-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -374,7 +376,7 @@
 							</div>
 						  <div class="form-group" id="form-navigation-container">
 						  	 <div class="col-sm-offset-2 col-sm-10">
-						  	 	<a class="btn btn-success btn-large" id="multipage-form-next">Next »</a>
+						  	 	<a class="btn btn-info btn-large" id="multipage-form-next">Next »</a>
 						  	 </div>
 						  </div>							
 						</form>
@@ -396,35 +398,34 @@
 	<div class="row clearfix">
 		<div class="col-md-4 column">
 			<h2>
-				Ratings
+				<span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Ratings
 			</h2>
 			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
+				Get insurer ratings from agencies including AM Best, Standard & Poors, Moody's, and Fitch.  Our comprehensive Financial Profile will provide <?=ucfirst($state);?>-specific insurance company ratings, investment profiles, and Income & Earnings statements.  			</p>
 			<p>
-				<a class="btn" href="#">View details »</a>
+				<a class="btn" href="#">Learn More »</a>
 			</p>
 		</div>
 		<div class="col-md-4 column">
 			<h2>
-				Reviews
+				<span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;Comparisons
 			</h2>
 			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+				Quickly compare "apples-to-apples" with a personalized quotes.  If you're just starting and not sure of what coverage you're interested in, we will provide you three unique plan designs to start with.  You'll get quotes from multiple Blue Chip providers.
 			</p>
 			<p>
-				<a class="btn" href="#">View details »</a>
+				<a class="btn" href="#">Start Quote »</a>
 			</p>
 		</div>
 		<div class="col-md-4 column">
 			<h2>
-				Companies
+				<span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;Shop Around
 			</h2>
 			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+				Did you know that in <?=ucfirst($state);?> there are over a dozen major Long Term Care Insurance providers?  At LTC Tree, we impartially shop a select group of carriers and will provide you a spreadsheet with your options.  Once you're ready to compare, we're here for you.
 			</p>
 			<p>
-				<a class="btn" href="#">View details »</a>
+				<a class="btn" href="#">See Companies »</a>
 			</p>
 		</div>
 	</div>

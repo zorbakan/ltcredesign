@@ -81,7 +81,8 @@ class quote_model extends CI_Model{
 		);
 
 		$this->db->insert('io_new_lead', $data_to_insert); 
-
+		$quote_id = $this->db->insert_id();
+		return $quote_id;
 	}
 
 	public function add_final_quote_request($person_data){

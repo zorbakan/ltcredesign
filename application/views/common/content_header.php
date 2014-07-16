@@ -9,9 +9,9 @@
 					 	<span class="icon-bar"></span>
 					 </button> 
 					 <a class="" href="<?php echo base_url();?>">
-					 	<img src="<?php echo base_url();?>img/logo.png" style="margin-left:10px;">
+					 	<img src="<?php echo base_url();?>img/<?if (isset($state)){ echo strtolower($state);}else{echo "logo";}?>.png" style="margin-left:10px;">
 					 </a>
-				</div>
+				</div>strtolower
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">

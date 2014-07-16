@@ -1,14 +1,3 @@
-<?php
-//Load Cost of Care Dom Elements
-if (isset($section) AND $section=='cost-of-long-term-care'){?>
-  <div class="row clearfix">
-		<div class="col-md-12 column">
-			<div id="map_container">
-			</div>
-		</div>
-	</div>
-<?}?>
-
 	<div class="row clearfix">
 		<div class="col-md-6 column">
 			<blockquote>
@@ -58,30 +47,21 @@ if (isset($section) AND $section=='cost-of-long-term-care'){?>
 	<?php
 	if (isset($articles) AND count($articles)>0){
 		$art_qty = count($articles);
-		echo '<div class="col-md-4 column">';
+		echo '<div class="col-md-6 column">';
 		if ($art_qty>0){
 			$temp_index = 0;
 			while ($temp_index<$art_qty){
 				echo '<p><a href="#">'.$articles[$temp_index]['title'].'</a></p>';
-				$temp_index = $temp_index+3;
+				$temp_index = $temp_index+2;
 			}
 		}
 		echo '</div>';
-		echo '<div class="col-md-4 column">';
+		echo '<div class="col-md-6 column">';
 		if ($art_qty>1){
 			$temp_index = 1;
 			while ($temp_index<$art_qty){
 				echo '<p><a href="#">'.$articles[$temp_index]['title'].'</a></p>';
-				$temp_index = $temp_index+3;
-			}
-		}
-		echo '</div>';
-		echo '<div class="col-md-4 column">';
-		if ($art_qty>2){
-			$temp_index = 2;
-			while ($temp_index<$art_qty){
-				echo '<p><a href="#">'.$articles[$temp_index]['title'].'</a></p>';
-				$temp_index = $temp_index+3;
+				$temp_index = $temp_index+2;
 			}
 		}
 		echo '</div>';

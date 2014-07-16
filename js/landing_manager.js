@@ -4,6 +4,7 @@ function LandingPageManager(){
 	self.last_from_step = 4;
 	self.quote_form = [];
 	self._map_manager_ = {};
+	self.current_quote_id = 0;
 
 	this.init = function() {
 		self.bind_handlers();
@@ -319,7 +320,17 @@ function LandingPageManager(){
 	};
 
 	this.preliminary_submit_to_server_ok = function(data) {
-
+  	var response = data['responseText'];
+		try{
+	    response = $.parseJSON( response )
+		}catch(e){
+	    response = {'result':'not_json'};
+		}
+		if (response['result'] == 'ok'){
+	    self.current_quote_id = response['quote_id'];
+		}else{
+	    console.log(response);
+		}
 	};
 
 	this.hide_current_step = function() {
@@ -348,6 +359,7 @@ function LandingPageManager(){
 
 	this.submit_form_data_to_server = function() {
 		var datasubmited = $.extend({}, self.quote_form[0], self.quote_form[1], self.quote_form[2], self.quote_form[3]);
+		datasubmited['quote_id'] = self.current_quote_id;
 		var ws = {
 			type: 'POST',
 			dataType : "json",
@@ -356,6 +368,19 @@ function LandingPageManager(){
 			url : BASE_URL+"quote/post_final"
 		}
 		$.ajax(ws);
+	};
+
+	this.submit_to_server_ok = function(data) {
+		var response = data['responseText'];
+		try{
+	    response = $.parseJSON( response )
+		}catch(e){
+	    response = {'result':'not_json'};
+		}
+		if (response['result'] == 'ok'){
+		}else{
+	    console.log(response);
+		}
 	};
 }
 

@@ -1,11 +1,12 @@
 function MapOfCostsManager(){
 	var self = this;
 	self.dom_map_container = '#map_container';
+	self.map_start_lat = 20;
+	self.map_start_long = 80;
 
 	this.init = function(map_container) {
 		self.dom_map_container = map_container || self.dom_map_container;
 		self.load_map();
-		self.get_cost_of_care_points();
 	};
 
 	this.get_cost_of_care_points = function() {
@@ -32,6 +33,7 @@ function MapOfCostsManager(){
     }else{
         console.log(response);
     }
+
 	};
 
 	this.load_cost_of_care_points = function(map_points) {
@@ -50,20 +52,27 @@ function MapOfCostsManager(){
 	        }
 		    );
 
-			if (i==0){
-				//$(self.dom_map_container).jHERE('center', {latitude: parseFloat(a_point.lat), longitude: parseFloat('-'+a_point.long)});
+			if ((i==(map_points.length-1)/2) || (i==(map_points.length)/2) ){
+				self.map_start_lat = parseFloat(a_point.lat);
+				self.map_start_long = parseFloat('-'+a_point.long);
+				setTimeout(function(){
+					$(self.dom_map_container).jHERE('center', [self.map_start_lat , self.map_start_long]);
+					$(self.dom_map_container).jHERE('zoom', 6);
+				},2000);
 			}
 		};
 	};
 
 	this.load_map = function() {
 		$(window).on('load', function(){
+				//Load map and points
         $(self.dom_map_container).jHERE({
             enable: ['behavior'],
-            center: [26.664167, -80.838611],
-            zoom: 5,
+            center: [36.664167, -95.838611],
+            zoom: 3,
             type: 'smart'
         });
+        self.get_cost_of_care_points();
     });
 	};
 
