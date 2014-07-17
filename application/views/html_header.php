@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title><?if (isset($state)){ echo ucfirst($state)." Long Term Care Insurance";} else{echo "Long Term Care Insurance";}?></title>
+  <title><?if (isset($state)){ echo str_replace('-', ' ', ucfirst($state))." Long Term Care Insurance";} else{echo "Long Term Care Insurance";}?></title>
   <?/*<title><?if (isset($title)){ echo $title;} else{echo "Long Term Care Insurance";}?></title>*/?>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">

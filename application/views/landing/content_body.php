@@ -22,7 +22,7 @@
 				</p>
 				
 				<h3>Quote by Phone</h3> 
-				<?php  echo ucfirst($state); 
+				<?php  echo str_replace('-', ' ', ucfirst($state)); 
 					?> Regional Phone Numbers:
 					<h4>
 					<?php 
@@ -286,31 +286,31 @@
 						  		<legend>Daily / Monthly Benefit</legend>
 									<div class="radio">
 									  <label>
-									    <input type="radio" name="benefit_amount" value="usd100day" checked>
+									    <input type="radio" name="benefit_amount" value="$100day">
 									    $100/day or $3,000/mo
 									  </label>
 									</div>
 									<div class="radio">
 									  <label>
-									    <input type="radio" name="benefit_amount" value="usd150day" checked>
-									    $150/day or $4,500/mo
+									    <input type="radio" name="benefit_amount" value="$150day">
+									    $150/day or $4,500/mo (<?=str_replace('-', ' ', ucfirst($state));?> Average)
 									  </label>
 									</div>
 									<div class="radio">
 									  <label>
-									    <input type="radio" name="benefit_amount" value="usd200day" checked>
+									    <input type="radio" name="benefit_amount" value="$200day">
 									    $200/day or $6,000/mo
 									  </label>
 									</div>
 									<div class="radio">
 									  <label>
-									    <input type="radio" name="benefit_amount" value="usd250day" checked>
+									    <input type="radio" name="benefit_amount" value="$250day">
 									    $250/day or $7,500/mo
 									  </label>
 									</div>
 									<div class="radio">
 									  <label>
-									    <input type="radio" name="benefit_amount" value="usd300day" checked>
+									    <input type="radio" name="benefit_amount" value="$300day">
 									    $300/day or $9,000/mo
 									  </label>
 									</div>
@@ -321,31 +321,31 @@
 						  		<legend>Benefit Period</legend>
 									<div class="checkbox">
 									  <label>
-									    <input type="checkbox" name="2years" value="2years" checked>
+									    <input type="checkbox" name="2years" value="2y">
 									    2 Years
 									  </label>
 									</div>
 									<div class="checkbox">
 									  <label>
-									    <input type="checkbox" name="3years" value="3years" checked>
+									    <input type="checkbox" name="3years" value="3y">
 									    3 Years
 									  </label>
 									</div>
 									<div class="checkbox">
 									  <label>
-									    <input type="checkbox" name="5years" value="5years" checked>
-									    5 Years
+									    <input type="checkbox" name="5years" value="5y">
+									    5 Years (<?=str_replace('-', ' ', ucfirst($state));?> Average)
 									  </label>
 									</div>
 									<div class="checkbox">
 									  <label>
-									    <input type="checkbox" name="10years" value="10years" checked>
+									    <input type="checkbox" name="10years" value="10y">
 									    10 Years
 									  </label>
 									</div>
 									<div class="checkbox">
 									  <label>
-									    <input type="checkbox" name="unlimited" value="unlimited" checked>
+									    <input type="checkbox" name="unlimited" value="unlimit">
 									    Unlimited Benefit
 									  </label>
 									</div>
@@ -356,19 +356,19 @@
 						  		<legend>Options &amp; Riders</legend>
 									<div class="checkbox">
 									  <label>
-									    <input type="checkbox" name="returnofpremium" value="returnofpremium" checked>
+									    <input type="checkbox" name="returnofpremium" value="returnofpremium">
 									    Return of Premium
 									  </label>
 									</div>
 									<div class="checkbox">
 									  <label>
-									    <input type="checkbox" name="careday1" value="careday1" checked>
+									    <input type="checkbox" name="careday1" value="careday1">
 									    Home Health Care on Day 1 
 									  </label>
 									</div>
 									<div class="checkbox">
 									  <label>
-									    <input type="checkbox" name="sharedcoverage" value="sharedcoverage" checked>
+									    <input type="checkbox" name="sharedcoverage" value="sharedcoverage">
 									    Shared Coverage 
 									  </label>
 									</div>
@@ -401,7 +401,7 @@
 				<span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Ratings
 			</h2>
 			<p>
-				Get insurer ratings from agencies including AM Best, Standard & Poors, Moody's, and Fitch.  Our comprehensive Financial Profile will provide <?=ucfirst($state);?>-specific insurance company ratings, investment profiles, and Income & Earnings statements.  			</p>
+				Get insurer ratings from agencies including AM Best, Standard & Poors, Moody's, and Fitch.  Our comprehensive Financial Profile will provide <?=str_replace('-', ' ', ucfirst($state));?>-specific insurance company ratings, investment profiles, and Income & Earnings statements.  			</p>
 			<p>
 				<a class="btn" href="#">Learn More »</a>
 			</p>
@@ -422,7 +422,7 @@
 				<span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;Shop Around
 			</h2>
 			<p>
-				Did you know that in <?=ucfirst($state);?> there are over a dozen major Long Term Care Insurance providers?  At LTC Tree, we impartially shop a select group of carriers and will provide you a spreadsheet with your options.  Once you're ready to compare, we're here for you.
+				Did you know that in <?=str_replace('-', ' ', ucfirst($state));?> there are over a dozen major Long Term Care Insurance providers?  At LTC Tree, we impartially shop a select group of carriers and will provide you a spreadsheet with your options.  Once you're ready to compare, we're here for you.
 			</p>
 			<p>
 				<a class="btn" href="#">See Companies »</a>

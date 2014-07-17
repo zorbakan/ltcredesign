@@ -9,7 +9,6 @@ function LandingPageManager(){
 	this.init = function() {
 		self.bind_handlers();
 		self.reset_form_modal();
-		self.initialize_quote_form_data();
 	};
 
 	this.initialize_quote_form_data = function() {
@@ -58,6 +57,8 @@ function LandingPageManager(){
 		});
 		$('#form-Age').val('55');
 		$('#spouse-Age').val('55');
+		$('input[value="$150day"]').prop('checked',true);		
+		$('input[name="5years"]').prop('checked',true);
 		
 
 	};
@@ -355,6 +356,7 @@ function LandingPageManager(){
 		$('#form-navigation-container').show();
 		$('#form-quote-elem').children('.form-step1').show();
 		self.current_form_step = 1;
+		self.initialize_quote_form_data();
 	};
 
 	this.submit_form_data_to_server = function() {
